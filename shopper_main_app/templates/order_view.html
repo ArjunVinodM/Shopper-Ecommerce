@@ -1,0 +1,52 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  thead,th{
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+<div style="overflow-x: auto;">
+  <table class="table table-primary table-hover mt-0 mb-5">
+    <thead class="table table-light">                              
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Ordered Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in order %}
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.user.first_name }}</td>
+        <td>{{ c.user.last_name }}</td>
+        <td>{{ c.customer.cust_mobile }}</td>
+        <td>{{ c.user.email }}</td>
+        <td>{{ c.customer.cust_address }} {{ c.customer.cust_locality }}<br> {{ c.customer.cust_city }} {{ c.customer.cust_state }} {{ c.customer.cust_pincode }}</td>
+        <td><img src="{{ c.product.prdt_image.url }}" alt="" style="height: 200px; width: 200px;"></td>
+        <td>{{c.quantity}}</td>
+        <td>{{ c.ordered_date }}</td>
+        <td>{{ c.status }}</td>
+        <td>
+          <button style="width: 100px; text-decoration:none; background-attachment: fixed; background: black;"><a href="{% url 'update_order' c.id %}" style="text-decoration:none; color: red;">Update</a></button>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

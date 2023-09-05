@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block main-content %}
+
+<div class="container-fluid pt-5 pb-5" style="background: white;">
+  <div class="main-body">
+    <div class="row">
+      {% for profile in profile %}
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <div class="mt-3">
+                <h4>{{ profile.cust_user.first_name }} {{ profile.cust_user.last_name }}</h4>
+                <p class="text-secondary mb-1">{{ profile.cust_mobile }}</p>
+                <p class="text-muted font-size-sm">{{ profile.cust_user.email }}</p>
+                <p class="text-muted font-size-sm">{{ profile.cust_address }} <br>{{ profile.cust_city }} {{ profile.cust_state }} {{ profile.cust_pincode }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+
+            <form action="/update_profile/{{ profile.id }}" method='post'>
+              {% csrf_token %}
+
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">First Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_user.first_name }}" name='u_fname'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Last Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_user.last_name }}" name='u_lname'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_user.email }}" name='u_email'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Mobile</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_mobile }}" name='u_mobile'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Address</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_address }}" name='u_address'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Locality</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_locality }}" name='u_locality'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">City</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_city }}" name='u_city'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">State</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_state }}" name='u_state'>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Pincode</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{ profile.cust_pincode }}" name='u_pincode'>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9 text-secondary">
+                  <button type="submit" class="btn btn-primary px-4" value="Save Changes">Save Changes</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock main-content %}

@@ -1,0 +1,52 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title%}Show Customer{% endblock title %}
+{% block content %}
+
+<style>
+  thead,th{
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+<div style="overflow-x: auto;">
+  <table class="table table-primary table-hover mt-5 mb-5">
+    <thead class="table table-light">                              
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Locality</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Pincode</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in show_customer %}
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.cust_user.first_name }}</td>
+        <td>{{ c.cust_user.last_name }}</td>
+        <td>{{ c.cust_user.email }}</td>
+        <td>{{ c.cust_mobile }}</td>
+        <td>{{ c.cust_address }}</td>
+        <td>{{ c.cust_locality }}</td>
+        <td>{{ c.cust_city }}</td>
+        <td>{{ c.cust_state }}</td>
+        <td>{{ c.cust_pincode }}</td>
+        <td>
+          <button style="width: 100px; text-decoration:none; background-attachment: fixed; background: black;"><a href="{% url 'delete_customer' c.id %}" style="text-decoration:none; color: red;">Delete</a></button>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock content %}

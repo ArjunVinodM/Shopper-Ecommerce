@@ -1,0 +1,138 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+  thead,th{
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+<div style="overflow-x: auto;">
+  <table class="table table-primary table-hover mt-0 mb-5">
+    <thead class="table table-light">                              
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th>Locality</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Pincode</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in show_customer %}
+      <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.cust_user.first_name }}</td>
+        <td>{{ c.cust_user.last_name }}</td>
+        <td>{{ c.cust_user.email }}</td>
+        <td>{{ c.cust_mobile }}</td>
+        <td>{{ c.cust_address }}</td>
+        <td>{{ c.cust_locality }}</td>
+        <td>{{ c.cust_city }}</td>
+        <td>{{ c.cust_state }}</td>
+        <td>{{ c.cust_pincode }}</td>
+        <td>
+          <button style="width: 100px; text-decoration:none; background-attachment: fixed; background: black;"><a href="{% url 'delete_customer' c.id %}" style="text-decoration:none; color: red;">Delete</a></button>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+{% comment %} <style>
+  .body-home{
+    text-align: center;
+  }
+  h1{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    color: white;
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 7%; /* Position the text container at the top of the image */
+    left: 50%; /* Position the text container at the center of the image horizontally */
+    transform: translateX(-50%); /* Center the text container horizontally */
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    color: black;
+  }
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #55CEFF;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.overlay-button {
+  position: absolute;
+  top: 77%; /* Position the button at the center of the image vertically */
+  left: 50%; /* Position the button at the center of the image horizontally */
+  transform: translate(-50%, -50%); /* Center the button precisely */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  opacity: 0; /* Hide the button by default */
+  transition: opacity 0.3s ease; /* Add a smooth transition for the button's appearance */
+}
+
+.container:hover .overlay-button {
+  opacity: 1; /* Show the button when hovering over the container */
+}
+</style>
+
+<section>
+  <div class="container" style="padding: 2rem;">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <div class="card h-100">
+              <a href="#" class="btn">
+              <img class="card-img-top" height="250vh" alt="" src="{% static 'images/cu2.jpg' %}">
+              <div class="text-overlay text-dark" style="top: 1%;">
+                <h2><b>View Customers</b></h2>
+              </div>
+              <a href="{% url 'customer_view' %}" style="text-decoration: none;" class="overlay-button">Go</a>
+              </a>  
+            </div>
+          </div>
+          <div class="col-md-6 mb-2">
+            <div class="card h-100">
+              <a href="#" class="btn">
+              <img class="card-img-top" height="250vh" alt="" src="{% static 'images/rem_cus.jpg' %}">
+              <div class="text-overlay" style="top: 1%;">
+                <h2><b><span style="color: red;">Remove Customer</span></b></h2>
+              </div>
+              <a href="{% url 'show_customer' %}" style="text-decoration: none;" class="overlay-button">Go</a>
+              </a>  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> {% endcomment %}
+
+
+
+{% endblock %}

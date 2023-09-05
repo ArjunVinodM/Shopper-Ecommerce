@@ -1,0 +1,51 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block title%}Add To Cart{% endblock title %}
+{% block content %}
+
+<style>
+  thead,th{
+    position: sticky;
+    top: 0;
+  }
+</style>
+
+<div style="overflow-x: auto;">
+  <table class="table table-primary table-hover mb-5">
+    <thead class="table table-light">                             
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Brand Name</th>
+        <th>Description</th>
+        <th>Selling Price</th>
+        <th>Discounted Price</th>
+        <th>Category</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in show_product %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.prdt_title }}</td>
+        <td>{{ p.prdt_brand }}</td>
+        <td>{{ p.prdt_description }}</td>
+        <td>{{ p.prdt_selling_price }}</td>
+        <td>{{ p.prdt_discounted_price }}</td>
+        <td>{{ p.prdt_category.category_name }}</td>
+        <td>
+          <img src="{{ p.prdt_image.url }}" style="height: 100px; width: 100px">
+        </td>
+        <td>
+          <button style="width: 100px; margin-top:15px; text-decoration:none; background-attachment: fixed; background: black;"><a href="{% url 'update_product' p.id %}" style="text-decoration:none; color: yellow;">Update</a></button><br><br>
+          <button style="width: 100px; text-decoration:none; background-attachment: fixed; background: black;"><a href="{% url 'delete_product' p.id %}" style="text-decoration:none; color: red;">Delete</a></button>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock content %}

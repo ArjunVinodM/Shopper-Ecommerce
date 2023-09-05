@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Mobile{% endblock title %}
+{% block main-content %}
+
+<div class="container-fluid" style="background: white; padding: 2rem;">
+
+  <div class="m-3">
+    <h3 class="fw-bold text-danger">ALL FASHION ITEMS </h3>
+  </div>
+       
+  <div class="col-sm-12 pb-3">
+    <div class="row">
+      <div class="m-3">
+        <h3 class="fw-bold ">ENJOY EXTRA SAVINGS ON TOP WEARS </h3>
+      </div>
+      {% for t in topwear %}
+      <div class="col-sm-3 mb-5">
+        <div class="card shadow">
+          <a href="{% url 'product_view' t.id %}" class="btn"><img src="{{ t.prdt_image.url }}" alt="{{Product.title}}" height="400px" class="card-img-top"></a>
+          <div class="card-body">
+            <h6 class="fw-bold card-text text-truncate">{{ t.prdt_brand }}</h6>
+            <p class="card-text text-truncate">{{ t.prdt_title }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="fw-bold text-decoration-line-through">Rs. {{ t.prdt_selling_price }}</small><br><span class="fs-5 fw-bold">Rs. {{ t.prdt_discounted_price }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<!-- Slider 1 -->
+
+<div class="container-fluid" style="padding: 2rem; background: #CCFFFF;">
+  <div class="row">
+    <div class="m-3">
+      <h3 class="fw-bold "> BRAND WATCHES AT BEST DISCOUNT </h3>
+    </div>
+  
+    <div class="owl-carousel" id="slider1">
+      {% for w in watch %}
+      <div class="col-mb-4">
+        <div class="card shadow">
+          <a href="{% url 'product_view' w.id %}" class="btn"><img src="{{ w.prdt_image.url }}" alt="{{Product.title}}" height="270px" class="card-img-top"></a>
+          <div class="card-body">
+            <h6 class="fw-bold card-text text-truncate">{{ w.prdt_brand }}</h6>
+            <p class="card-text text-truncate">{{ w.prdt_title }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="fw-bold text-decoration-line-through">Rs. {{ w.prdt_selling_price }}</small><br><span class="fs-5 fw-bold">Rs. {{ w.prdt_discounted_price }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!--End Slider 1 -->
+
+
+
+
+<div class="container-fluid pt-5" style="background: white; padding: 2rem;">
+  <div class="row">
+    <div class="m-3">
+      <h3 class="fw-bold ">CHECKOUT BRAND NEW BOTTOM WEARS </h3>
+    </div>
+    {% for b in bottomwear %}    
+    <div class="col-sm-3 mb-5">
+      <div class="card shadow">
+        <a href="{% url 'product_view' b.id %}" class="btn"><img src="{{ b.prdt_image.url }}" alt="{{Product.title}}" height="350px" class="card-img-top"></a>
+        <div class="card-body">
+          <h6 class="fw-bold card-text text-truncate">{{ b.prdt_brand }}</h6>
+          <p class="card-text text-truncate">{{ b.prdt_title }}</p>
+        </div>
+        <div class="card-footer">
+          <small class="fw-bold text-decoration-line-through">Rs. {{ b.prdt_selling_price }}</small><br><span class="fs-5 fw-bold">Rs. {{ b.prdt_discounted_price }}</span>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+<!-- Slider 2-->
+
+<div class="container-fluid" style="padding: 2rem; background: #CCFFFF;">
+  <div class="row">
+    <div class="m-3">
+      <h3 class="fw-bold "> SHOES FOR MEN AND WOMEN </h3>
+    </div>
+  
+    <div class="owl-carousel" id="slider1">
+      {% for s in shoe %}    
+      <div class="col-mb-4">
+        <div class="card shadow">
+          <a href="{% url 'product_view' s.id %}" class="btn"><img src="{{ s.prdt_image.url }}" alt="{{Product.title}}" height="200px" class="card-img-top"></a>
+          <div class="card-body">
+            <h6 class="fw-bold card-text text-truncate">{{ s.prdt_brand }}</h6>
+            <p class="card-text text-truncate">{{ s.prdt_title }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="fw-bold text-decoration-line-through">Rs. {{ s.prdt_selling_price }}</small><br><span class="fs-5 fw-bold">Rs. {{ s.prdt_discounted_price }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!--End Slider 2 -->
+
+
+{% endblock main-content %}

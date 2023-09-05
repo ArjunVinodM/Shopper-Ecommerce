@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Mobile{% endblock title %}
+{% block main-content %}
+
+<div class="container-fluid" style="background: #CCFFFF; padding: 2rem;">
+
+        <div class="m-3 pt-2">
+          <h3 class="fw-bold ">ALL MOBILES </h3>
+       </div>
+       
+        <div class="col-sm-12 pt-5 pb-3">
+            <div class="row">
+                {% for m in mobile %}
+                <div class="col-sm-3 mb-5">
+                    <div class="card shadow">
+                    <a href="{% url 'product_view' m.id %}" class="btn"><img src="{{ m.prdt_image.url }}" alt="{{m.title}}" height="350px" class="card-img-top"></a>
+                    <div class="card-body">
+                        <h6 class="fw-bold card-text text-truncate">{{ m.prdt_brand }}</h6>
+                        <p class="card-text text-truncate">{{ p.prdt_title }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="fw-bold text-decoration-line-through">Rs. {{ m.prdt_selling_price }}</small><br><span class="fs-5 fw-bold">Rs. {{ m.prdt_discounted_price }}</span>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main-content %}
